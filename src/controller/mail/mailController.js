@@ -2,14 +2,14 @@ const sgMail = require('@sendgrid/mail')
 
 const sendMail = (req, res) => {
     console.log(req);
-    const { correo, nombres, apellidos } = req.body;
+    const { email, nombre, apellidos } = req.body;
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const msg = {
-        to: correo,
+        to: email,
         from: 'tg.elias.s@gmail.com',
         subject: `Estado de Solicitud`,
-        text: `Hola ${nombres} ${apellidos}, su solicitud ha sido recibida, su estado actual es PENDIENTE, pronto le responderemos.`,
+        text: `Hola ${nombre} ${apellidos}, su solicitud ha sido recibida, su estado actual es PENDIENTE, pronto le responderemos.`,
     }
     sgMail
         .send(msg)
